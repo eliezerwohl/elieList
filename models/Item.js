@@ -1,3 +1,6 @@
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
 var itemSchema = new Schema({
     _user: {
        type: Schema.Types.ObjectId,
@@ -12,9 +15,15 @@ var itemSchema = new Schema({
       required:true
     },
     bought:{
-      { type: Boolean, default:0 },
+      type: Boolean, 
+      default:0 
+    }
+    comment:{
+      [{
+       type : Schema.Types.ObjectId,
+        ref : 'Comment'
+      }]
     }
 });
 
-var Item = mongoose.model('Item', itemSchema);
-module.exports = Item;
+module.exports =  mongoose.model('Item', itemSchema);

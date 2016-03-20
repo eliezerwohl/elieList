@@ -6,9 +6,14 @@ var userSchema = new Schema({
       type : String,
       required : true,
     },
-    password : {
-      type : Number,
+    password:{
+      type:String, 
+      require:true
     },
+    bank:{
+      type:Number,
+      default:1000
+    }
     createdDate : {
       type : Date,
       default : Date.now()
@@ -19,5 +24,5 @@ var userSchema = new Schema({
       }]
 });
 
-var User = mongoose.model('User', userSchema);
-module.exports = User;
+module.exports = mongoose.model('User', userSchema);
+
