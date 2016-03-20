@@ -9,8 +9,8 @@ var PORT = 8080;
 var db = 'mongodb://localhost/garagesale';
 mongoose.connect(db);
 
-// var User = require('./models/User');
-// var Expense = require('./models/Expense');
+var User = require('./models/User');
+var Item = require('./models/Item');
 
 app.use(logger('dev'));
 app.use(express.static(__dirname + "/public"));
