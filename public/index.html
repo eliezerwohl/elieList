@@ -6,6 +6,23 @@
   <title></title>
 </head>
 <body>
-you hit this page
+<div id="wrapper">
+    <h1>Budget Tracker</h1>
+    <div ng-controller="GarageSaleController as garageSale">
+      <div id="onboard" ng-hide="garageSale.loggedIn">  
+          <form ng-submit="garageSale.login()">
+            <div>
+              <input class="input" placeholder="Enter a username" ng-model="garageSale.username" type="text" value="" />
+              <input class="input" placeholder="Enter a username" ng-model="garageSale.password" type="text" value="" />
+            </div>
+            <div id="login-button">
+              <button type="submit" class="solo-button">
+                <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"> Enter
+              </button>
+            </div>
+          </form>
+      </div>
+
+
 </body>
 </html>
