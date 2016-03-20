@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
-    name : {
+    username : {
       type : String,
       required : true,
     },
@@ -13,7 +13,7 @@ var userSchema = new Schema({
     bank:{
       type:Number,
       default:1000
-    }
+    },
     createdDate : {
       type : Date,
       default : Date.now()
@@ -24,5 +24,6 @@ var userSchema = new Schema({
       }]
 });
 
-module.exports = mongoose.model('User', userSchema);
+var User = mongoose.model('User', userSchema);
+module.exports = User;
 

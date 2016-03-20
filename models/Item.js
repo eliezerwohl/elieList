@@ -17,13 +17,12 @@ var itemSchema = new Schema({
     bought:{
       type: Boolean, 
       default:0 
-    }
-    comment:{
+    },
+    comment:
       [{
        type : Schema.Types.ObjectId,
         ref : 'Comment'
       }]
-    }
 });
-
-module.exports =  mongoose.model('Item', itemSchema);
+var Item = mongoose.model('Item', itemSchema);
+module.exports =  Item;

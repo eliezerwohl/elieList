@@ -7,36 +7,12 @@ var PORT = 8080;
 
 /*Mongoose Connect*/
 
-mongoose.connect('mongodb://localhost/garageSale');
-var db = mongoose.connection;
-db.on('error', function(err) {
-  console.log('Mongoose Error: ', err);
-});
-db.once('open', function() {
-  console.log('Mongoose connection successful.');
-});
+var db = 'mongodb://localhost/garageSale';
+mongoose.connect(db);
 
-var User = require('./models/User.js');
-var Item = require('./models/Item.js');
-var Comment = require('./models/Comment.js');
-var Schema = mongoose.Schema;
-var Article = new Schema({
-  article: {type:String, unique:true},
-  notes: [{
-    type: Schema.Types.ObjectId,
-    ref:'Note'
-  }]
-});
-
-
-var Title = mongoose.model('Title', Article);
-var ReviewSchema = new Schema({
-  noteReview: {
-    type:String
-  }
-});
-var Note = mongoose.model('Note', ReviewSchema);
-
+var User = require('./models/User');
+var Item = require('./models/Item');
+var Comment = require('./models/Comment');
 
 app.use(logger('dev'));
 app.use(express.static(__dirname + "/public"));
@@ -46,8 +22,35 @@ app.get("/", function(res, req){
   res.send(index.html)
 })
 
+app.post('/user', function(req, res) {
+  req.body.username = req.body.username.toLowerCase();
+  User.findOne({
+      'username': req.body.username
+    })
+     .exec(function(err, user) {
+      if (err) {
+        console.log('error');
+        res.send(err);
+      } else {
+        if (user === null) {
+          console.log(req.body);
+          var newUser = new User(req.body);
+          newUser.save(function(err, newUser) {
+            if (err) {
+              console.log(err);
+              res.send(err);
+            } else {
+              res.send(newUser);
+            }
+          });
+        } else {
+          console.log(user);
+          res.send(user);
+        }
 
-
+      }
+    });
+});
 
 app.listen(PORT, function() {
   console.log("listening on port:" + PORT);
