@@ -44,10 +44,10 @@
           <h3>Name: {{list.name}} </h3>
           <p>Description: {{list.description}} </p>
           <p> Price: {{list.price}} </p>
-          <button ng-click="garageSale.sell(list._id)">Purchase </button>
+          <button ng-click="garageSale.sell(list._id, list.price)">Purchase </button>
         </div>
         <h3> You've already bought this </h3>
-        <div class="row" ng-repeat="bought in garageSale.lists">
+        <div class="row" ng-repeat="bought in garageSale.lists | filter:{bought:true}">
           <h3>Name: {{bought.name}} </h3>
           <p>Description: {{bought.description}} </p>
           <p> Price: {{bought.price}} </p>

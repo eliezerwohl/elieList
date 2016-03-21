@@ -30,10 +30,9 @@ garageSale.addItem = function(){
           description:garageSale.item.description
         }
       }).then(function(result) {
-        debugger
+
         console.log(result)
          garageSale.lists.push(result.data);
-
       });
     };
   garageSale.getItems = function() {
@@ -47,17 +46,34 @@ garageSale.addItem = function(){
       });
     };
 
-      garageSale.sell = function(id) {
-        debugger
-        var url = "/sell/"+id;
-        console.log(url)
-        $http({
+
+    garageSale.sell = function(id, price){
+      garageSale.bank = garageSale.bank - price;
+      updateBank(garageSale.bank);
+       var url = "/sell/"+id;
+  $http({
         method: 'POST',
-        url: url,
-      }).then(function (result){
+        url: url
+      }).then(function(result) {
         console.log(result)
-      })
-      }
+       
+      });
+    };
+
+    
+    // };
+function updateBank(bank){
+  var url = "/updateBank/"+ bank + "/" + garageSale.userId;
+ $http({
+        method: 'POST',
+        url: url
+  }).then(function(result) {
+        console.log(result)
+       
+      });
+    };
+
+
 
 
 garageSale.getItems();
