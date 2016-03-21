@@ -1,6 +1,7 @@
 angular.module('garageApp', [])
 .controller('GarageSaleController', function($http) {
    var garageSale = this;
+   garageSale.lists = [];
    garageSale.login = function() {
     garageSale.loggedIn = true;
 
@@ -9,7 +10,7 @@ angular.module('garageApp', [])
         url: '/user',
         data: {username:garageSale.username}
        }).then(function(result) {
-        debugger
+
         console.log(result.data);
         garageSale.userId = result.data._id;
         garageSale.username = result.data.username;
@@ -29,12 +30,24 @@ garageSale.addItem = function(){
           description:garageSale.item.description
         }
       }).then(function(result) {
+        debugger
         console.log(result)
+         garageSale.lists.push(result.data);
+
+      });
+    };
+  garageSale.getItems = function() {
+      $http({
+        method: 'GET',
+        url: '/items'
+      }).then (function (result){
+        angular.forEach(result.data, function (eachOne){
+          garageSale.lists.push(eachOne);
+        });
       });
     };
 
-
-
+garageSale.getItems();
 
 
   })
