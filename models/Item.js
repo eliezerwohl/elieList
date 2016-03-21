@@ -15,10 +15,7 @@ var itemSchema = new Schema({
       required:true
     },
     price:String,
-    bought:{
-      type: Boolean, 
-      default:0 
-    },
+    bought:{type: Boolean, default:false},
     comment:
       [{
        type : Schema.Types.ObjectId,

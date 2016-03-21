@@ -37,12 +37,14 @@
         placeholder="Enter Description Here">
         <button id="submitbutton" type="submit">Add Item</button>
       </form>
-                     <h4> Love for sale </h4>
-    <div class="row" ng-repeat="list in garageSale.lists">
+        <h4> Love for sale </h4>
+    <div class="row" ng-repeat="list in garageSale.lists | filter:{bought:false}">
     <h3>Name: {{list.name}} </h3>
     <p>Description: {{list.description}} </p>
       <p> Price: {{list.price}} </p>
-    
+      <button ng-click="garageSale.sell(list._id)">Purchase </button>
+              
+
                 </div>
                   
                 </div>
