@@ -47,6 +47,19 @@ garageSale.addItem = function(){
       });
     };
 
+      garageSale.sell = function(id) {
+        debugger
+        var url = "/sell/"+id;
+        console.log(url)
+        $http({
+        method: 'POST',
+        url: url,
+      }).then(function (result){
+        console.log(result)
+      })
+      }
+
+
 garageSale.getItems();
 
 

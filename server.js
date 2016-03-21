@@ -81,6 +81,19 @@ app.get("/items", function(req, res) {
 });
 
 
+app.post('/sell/:id', function(req, res) {
+  debugger;
+var id = req.params.id;
+
+Item.update({_id: id}, {
+    bought: true
+}, function(err, numberAffected, rawResponse) {
+   //handle it
+})
+
+
+});
+
 app.listen(PORT, function() {
   console.log("listening on port:" + PORT);
 });
