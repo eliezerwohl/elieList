@@ -1,56 +1,64 @@
+
 <!DOCTYPE html>
 <html ng-app="garageApp">
+
 <head>
- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
   <script src="assets/javascript/controllers/app.js"></script>
   <title></title>
 </head>
+
 <body>
-<div id="wrapper">
+  <div id="wrapper">
     <h1>Garage Sale</h1>
     <div ng-controller="GarageSaleController as garageSale">
-      <div id="onboard" ng-hide="garageSale.loggedIn">  
-          <form ng-submit="garageSale.login()">
-            <div>
-              <input class="input" placeholder="Enter a username" ng-model="garageSale.username" type="text" value="" />
-              <input class="input" placeholder="Enter a username" ng-model="garageSale.password" type="text" value="" />
-            </div>
-            <div id="login-button">
-              <button type="submit" class="solo-button">
+      <div id="onboard" ng-hide="garageSale.loggedIn">
+        <form ng-submit="garageSale.login()">
+          <div>
+            <input class="input" placeholder="Enter a username" ng-model="garageSale.username" type="text" value="" />
+            <input class="input" placeholder="Enter a username" ng-model="garageSale.password" type="text" value="" />
+          </div>
+          <div id="login-button">
+            <button type="submit" class="solo-button">
                 <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"> Enter
               </button>
-            </div>
-          </form>
+          </div>
+        </form>
       </div>
-       <div ng-show="garageSale.loggedIn">
+      <div ng-show="garageSale.loggedIn">
         length: {{ garageSale.lists.length }}
         <h2>Hello, {{garageSale.username}}!</h2>
 
         <h3>How Much do you have in the: {{garageSale.bank | currency}}</h3>
-     
+
 
         <h3>Add new item </h3>
-       <form ng-submit="garageSale.addItem()">
-        <input id="itemName" type="text" ng-model="garageSale.item.name" placeholder="item name">
-        <input id="itemPrice" type="number" ng-model="garageSale.item.price" placeholder="Amount">
-        <input id="itemDescription" type="text" ng-model="garageSale.item.description"  
-        placeholder="Enter Description Here">
-        <button id="submitbutton" type="submit">Add Item</button>
-      </form>
+        <form ng-submit="garageSale.addItem()">
+          <input id="itemName" type="text" ng-model="garageSale.item.name" placeholder="item name">
+          <input id="itemPrice" type="number" ng-model="garageSale.item.price" placeholder="Amount">
+          <input id="itemDescription" type="text" ng-model="garageSale.item.description" placeholder="Enter Description Here">
+          <button id="submitbutton" type="submit">Add Item</button>
+        </form>
         <h4> Love for sale </h4>
-    <div class="row" ng-repeat="list in garageSale.lists | filter:{bought:false}">
-    <h3>Name: {{list.name}} </h3>
-    <p>Description: {{list.description}} </p>
-      <p> Price: {{list.price}} </p>
-      <button ng-click="garageSale.sell(list._id)">Purchase </button>
-              
+        <div class="row" ng-repeat="list in garageSale.lists | filter:{bought:false}">
+          <h3>Name: {{list.name}} </h3>
+          <p>Description: {{list.description}} </p>
+          <p> Price: {{list.price}} </p>
+          <button ng-click="garageSale.sell(list._id)">Purchase </button>
+        </div>
+        <h3> You've already bought this </h3>
+        <div class="row" ng-repeat="bought in garageSale.lists">
+          <h3>Name: {{bought.name}} </h3>
+          <p>Description: {{bought.description}} </p>
+          <p> Price: {{bought.price}} </p>
+        </div>
 
-                </div>
-                  
-                </div>
+
+      </div>
     </div>
 
 
 
 </body>
+
 </html>
