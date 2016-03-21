@@ -18,6 +18,23 @@ angular.module('garageApp', [])
       });
     };
 
+garageSale.addItem = function(){
+  $http({
+        method: 'POST',
+        url: '/newItem/',
+        data: {
+          price:garageSale.item.price,
+          name: garageSale.item.name,
+          _user:garageSale.userId,
+          description:garageSale.item.description
+        }
+      }).then(function(result) {
+        console.log(result)
+      });
+    };
+
+
+
 
 
   })

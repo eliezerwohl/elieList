@@ -25,6 +25,19 @@
        <div ng-show="garageSale.loggedIn">
         <h2>Hello, {{garageSale.username}}!</h2>
         <h3>How Much do you have in the: {{garageSale.bank | currency}}</h3>
+     
+
+        <h3>Add new item </h3>
+       <form ng-submit="garageSale.addItem()">
+        <input id="itemName" type="text" ng-model="garageSale.item.name" placeholder="item name">
+        <input id="itemPrice" type="number" ng-model="garageSale.item.price" placeholder="Amount">
+        <input id="itemDescription" type="text" ng-model="garageSale.item.description"  
+        placeholder="Enter Description Here">
+        <button id="submitbutton" type="submit">Add Item</button>
+      </form>
+    </div>
+<!--     </div> controller
+  </div> wrapper -->
 
 
 </body>
