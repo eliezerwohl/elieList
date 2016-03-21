@@ -14,6 +14,7 @@ var itemSchema = new Schema({
       type:String,
       required:true
     },
+    price:String,
     bought:{
       type: Boolean, 
       default:0 

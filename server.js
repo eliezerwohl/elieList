@@ -52,6 +52,25 @@ app.post('/user', function(req, res) {
     });
 });
 
+
+app.post('/newItem/', function(req, res) {
+  debugger
+
+  var newItem = new Item(req.body);
+  console.log(newItem)
+  newItem.save(function(err, newItem) {
+    if (err) {
+      console.log(err);
+      res.send(err);
+    } else {
+      res.send(newItem);
+    }
+  });
+});
+
+
+
+
 app.listen(PORT, function() {
   console.log("listening on port:" + PORT);
 });
