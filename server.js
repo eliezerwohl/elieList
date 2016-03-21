@@ -68,7 +68,17 @@ app.post('/newItem/', function(req, res) {
   });
 });
 
-
+app.get("/items", function(req, res) {
+  console.log(req.body);
+  Item.find(function(err, docs){
+    if (err){
+      console.log(err);
+      res.send(err);
+    } else {
+      res.send(docs);
+    }
+  });
+});
 
 
 app.listen(PORT, function() {

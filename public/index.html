@@ -23,7 +23,9 @@
           </form>
       </div>
        <div ng-show="garageSale.loggedIn">
+        length: {{ garageSale.lists.length }}
         <h2>Hello, {{garageSale.username}}!</h2>
+
         <h3>How Much do you have in the: {{garageSale.bank | currency}}</h3>
      
 
@@ -35,9 +37,17 @@
         placeholder="Enter Description Here">
         <button id="submitbutton" type="submit">Add Item</button>
       </form>
+                     <h4> Love for sale </h4>
+    <div class="row" ng-repeat="list in garageSale.lists">
+    <h3>Name: {{list.name}} </h3>
+    <p>Description: {{list.description}} </p>
+      <p> Price: {{list.price}} </p>
+    
+                </div>
+                  
+                </div>
     </div>
-<!--     </div> controller
-  </div> wrapper -->
+
 
 
 </body>
