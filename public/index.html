@@ -7,7 +7,7 @@
 </head>
 <body>
 <div id="wrapper">
-    <h1>Budget Tracker</h1>
+    <h1>Garage Sale</h1>
     <div ng-controller="GarageSaleController as garageSale">
       <div id="onboard" ng-hide="garageSale.loggedIn">  
           <form ng-submit="garageSale.login()">
@@ -22,6 +22,9 @@
             </div>
           </form>
       </div>
+       <div ng-show="garageSale.loggedIn">
+        <h2>Hello, {{garageSale.username}}!</h2>
+        <h3>How Much do you have in the: {{garageSale.bank | currency}}</h3>
 
 
 </body>
