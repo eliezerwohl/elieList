@@ -16,7 +16,7 @@
         <form ng-submit="garageSale.login()">
           <div>
             <input class="input" placeholder="Enter a username" ng-model="garageSale.username" type="text" value="" />
-            <input class="input" placeholder="Enter a username" ng-model="garageSale.password" type="text" value="" />
+          <!--   <input class="input" placeholder="Enter a username" ng-model="garageSale.password" type="text" value="" /> -->
           </div>
           <div id="login-button">
             <button type="submit" class="solo-button">
@@ -26,7 +26,7 @@
         </form>
       </div>
       <div ng-show="garageSale.loggedIn">
-        length: {{ garageSale.lists.length }}
+        Amount of Item: {{ garageSale.lists.length }}
         <h2>Hello, {{garageSale.username}}!</h2>
 
         <h3>How Much do you have in the: {{garageSale.bank | currency}}</h3>
