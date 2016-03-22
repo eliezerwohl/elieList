@@ -44,6 +44,8 @@
           <h3>Name: {{list.name}} </h3>
           <p>Description: {{list.description}} </p>
           <p> Price: {{list.price}} </p>
+
+          <input name="comment" ng-model="garageSale.item.comment"><button ng-click="garageSale.comment(list._id)">comment </button>
           <button ng-click="garageSale.sell(list._id, list.price)">Purchase </button>
         </div>
         <h3> You've already bought this </h3>

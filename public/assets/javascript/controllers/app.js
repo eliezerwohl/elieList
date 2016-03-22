@@ -69,11 +69,26 @@ function updateBank(bank){
         url: url
   }).then(function(result) {
         console.log(result)
-       
       });
     };
 
+garageSale.comment = function(id){
+  debugger
+  console.log("you hit the function +" + id)
+var url = "/comment/";
+  $http({
+        method: 'POST',
+        url: url,
+        data: {
+          comment:garageSale.item.comment,
+          _item:id
+        }
+      }).then(function(result) {
 
+        console.log(result)
+         garageSale.lists.push(result.data);
+      });
+};
 
 
 garageSale.getItems();
