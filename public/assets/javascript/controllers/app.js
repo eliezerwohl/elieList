@@ -90,7 +90,7 @@ var url = "/comment/";
       });
 };
 
-
+debugger
 garageSale.getItems();
 
 
