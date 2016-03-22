@@ -1,7 +1,8 @@
 angular.module('garageApp', [])
 .controller('GarageSaleController', function($http) {
    var garageSale = this;
-   garageSale.lists = [];
+   garageSale.lists = []
+   garageSale.commentBank =[]
    garageSale.login = function() {
     garageSale.loggedIn = true;
 
@@ -15,6 +16,7 @@ angular.module('garageApp', [])
         garageSale.userId = result.data._id;
         garageSale.username = result.data.username;
         garageSale.bank = result.data.bank;
+
         // budgetTracker.expenses = result.data.expenses;
       });
     };
@@ -46,6 +48,17 @@ garageSale.addItem = function(){
       });
     };
 
+  garageSale.getComments = function() {
+      $http({
+        method: 'GET',
+        url: '/getComments'
+      }).then (function (result){
+        angular.forEach(result.data, function (eachOne){
+          
+          garageSale.commentBank.push(eachOne);
+        });
+      });
+    };
 
     garageSale.sell = function(id, price){
       garageSale.bank = garageSale.bank - price;
@@ -73,7 +86,7 @@ function updateBank(bank){
     };
 
 garageSale.comment = function(id){
-  debugger
+  
   console.log("you hit the function +" + id)
 var url = "/comment/";
   $http({
@@ -84,13 +97,16 @@ var url = "/comment/";
           _item:id
         }
       }).then(function(result) {
+        
 
         console.log(result)
-         garageSale.lists.push(result.data);
+         garageSale.commentBank.push(result.data);
       });
 };
 
-debugger
+
+garageSale.getComments();
+
 garageSale.getItems();
 
 
