@@ -67,6 +67,21 @@ app.post('/newItem/', function(req, res) {
   });
 });
 
+app.post('/comment/', function(req, res) {
+  debugger
+console.log(req.body)
+  var newComment = new Comment(req.body);
+  console.log(newComment)
+  newComment.save(function(err, comment) {
+    if (err) {
+      console.log(err);
+      res.send(err);
+    } else {
+      res.send(comment);
+    }
+  });
+});
+
 app.get("/items", function(req, res) {
   console.log(req.body);
   Item.find(function(err, docs){
