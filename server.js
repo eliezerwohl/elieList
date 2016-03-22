@@ -54,7 +54,6 @@ app.post('/user', function(req, res) {
 
 
 app.post('/newItem/', function(req, res) {
-  debugger
 
   var newItem = new Item(req.body);
   console.log(newItem)
@@ -82,18 +81,37 @@ app.get("/items", function(req, res) {
 
 
 app.post('/sell/:id', function(req, res) {
-  debugger;
 var id = req.params.id;
 
 Item.update({_id: id}, {
     bought: true
-}, function(err, numberAffected, rawResponse) {
-   //handle it
+}, function(err, docs) {
+  if (err) {
+      console.log(err);
+      res.send(err);
+    } else {
+      res.send(docs);
+    }
 })
-
-
 });
 
+
+app.post('/updateBank/:bank/:id', function(req, res) {
+  debugger
+var id = req.params.id;
+var bank = req.params.bank;
+
+User.update({_id: id}, {
+    bank: bank
+}, function(err, docs) {
+  if (err) {
+      console.log(err);
+      res.send(err);
+    } else {
+      res.send(docs);
+    }
+})
+});
 app.listen(PORT, function() {
   console.log("listening on port:" + PORT);
 });
