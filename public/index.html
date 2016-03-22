@@ -44,7 +44,9 @@
           <h3>Name: {{list.name}} </h3>
           <p>Description: {{list.description}} </p>
           <p> Price: {{list.price}} </p>
-
+          <div class="row" ng-repeat="comment in garageSale.commentBank | filter:{_item:{{list.id}}">
+          {{comment.comment}}
+          </div>
           <input name="comment" ng-model="garageSale.item.comment"><button ng-click="garageSale.comment(list._id)">comment </button>
           <button ng-click="garageSale.sell(list._id, list.price)">Purchase </button>
         </div>

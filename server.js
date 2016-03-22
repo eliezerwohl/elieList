@@ -95,6 +95,18 @@ app.get("/items", function(req, res) {
 });
 
 
+app.get("/getComments", function(req, res) {
+  console.log(req.body);
+  Comment.find(function(err, docs){
+    if (err){
+      console.log(err);
+      res.send(err);
+    } else {
+      res.send(docs);
+    }
+  });
+});
+
 app.post('/sell/:id', function(req, res) {
 var id = req.params.id;
 
